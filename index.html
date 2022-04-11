@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/style.css" />
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+    <div class="wrapper">
+        <div class="city-search">
+            <h1>Search for a City:</h1>
+            <input type="text" id="city">
+            <button class="searchCity">Search</button>
+            <hr>
+            <div class="searched"></div>
+        </div>
+        <div class="city-display">
+
+            <div class="week-display"></div>
+            <div class="forecast">
+                <h1>5-Day Forecast</h1>
+                <ul class="5-days">
+                    <li id="day-1"></li>
+                    <li id="day-2"></li>
+                    <li id="day-3"></li>
+                    <li id="day-4"></li>
+                    <li id="day-5"></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+body {
+    background-color: antiquewhite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: black;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+header {
+    background-image: linear-gradient(to right, rgb(19, 19, 83), rgba(109, 38, 195, 0.645));
+    color: antiquewhite;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    height: 75px;
+}
