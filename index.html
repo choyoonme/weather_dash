@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css" />
     <title>Weather Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -14,17 +15,17 @@
         <h1>Weather Dashboard</h1>
     </header>
     <main class="wrapper">
-        <div class="city-search">
+        <div class="citySearch">
             <h1>Search for a City:</h1>
             <input type="text" id="city">
-            <button class="searchBtn">Search</button>
+            <button class="searchButton">Search</button>
             <hr>
-            <div class="searched"></div>
+            <div class="searchHistory"></div>
         </div>
         <div class="dashboard">
-            <div class="city-display">
+            <div class="currentWeather">
             </div>
-            <div class="week-display">
+            <div class="futureWeather">
                 <h1>5-Day Forecast</h1>
                 <ul>
                     <li class="day" id="day-1"></li>
@@ -38,6 +39,7 @@
         </div>
     </main>
     <script src="./assets/script.js"></script>
+
 </body>
 
 </html>

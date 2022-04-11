@@ -1,5 +1,5 @@
-# weather_dash
-# 06 Server-Side APIs: Weather Dashboard
+
+# Weather Dashboard
 
 ## Your Task
 
