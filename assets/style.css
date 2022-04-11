@@ -1,17 +1,59 @@
 body {
-    background-color: antiquewhite;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: black;
-    margin: 0;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
 }
 
 header {
     background-image: linear-gradient(to right, rgb(19, 19, 83), rgba(109, 38, 195, 0.645));
-    color: antiquewhite;
+    color: white;
     margin: 0 auto;
     text-align: center;
     width: 100%;
     height: 75px;
+}
+
+.city-search {
+    margin: 15px;
+}
+
+#city {
+    display: block;
+    margin: 5px;
+}
+
+.wrapper {
+    display: flex;
+    margin: 0 auto;
+}
+
+.city-display {
+    width: 800px;
+    height: 300px;
+    border: solid 1px black;
+    margin: 10px;
+}
+
+.week-display {
+    width: 800px;
+    height: 250px;
+    text-align: left;
+    margin: 10px;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.day {
+    width: 225px;
+    height: 250px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: rgb(19, 19, 83);
 }

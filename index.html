@@ -13,29 +13,30 @@
     <header>
         <h1>Weather Dashboard</h1>
     </header>
-    <div class="wrapper">
+    <main class="wrapper">
         <div class="city-search">
             <h1>Search for a City:</h1>
             <input type="text" id="city">
-            <button class="searchCity">Search</button>
+            <button class="searchBtn">Search</button>
             <hr>
             <div class="searched"></div>
         </div>
-        <div class="city-display">
-
-            <div class="week-display"></div>
-            <div class="forecast">
+        <div class="dashboard">
+            <div class="city-display">
+            </div>
+            <div class="week-display">
                 <h1>5-Day Forecast</h1>
-                <ul class="5-days">
-                    <li id="day-1"></li>
-                    <li id="day-2"></li>
-                    <li id="day-3"></li>
-                    <li id="day-4"></li>
-                    <li id="day-5"></li>
+                <ul>
+                    <li class="day" id="day-1"></li>
+                    <li class="day" id="day-2"></li>
+                    <li class="day" id="day-3"></li>
+                    <li class="day" id="day-4"></li>
+                    <li class="day" id="day-5"></li>
                 </ul>
             </div>
+
         </div>
-    </div>
+    </main>
     <script src="./assets/script.js"></script>
 </body>
 
