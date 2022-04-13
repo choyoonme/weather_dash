@@ -38,6 +38,8 @@ header {
     height: 325px;
     border: solid 1px black;
     margin: 10px;
+    padding-left: 10px;
+    background-color: antiquewhite;
 }
 
 .futureWeather {
@@ -59,4 +61,6 @@ ul {
     margin: 5px;
     border-radius: 5px;
     background-color: rgb(19, 19, 83);
+    color: antiquewhite;
+    padding: 10px;
 }

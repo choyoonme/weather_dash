@@ -45,9 +45,9 @@ async function getForecast(lat, lon) {
 function renderCurrent(data) {
     document.querySelector(".currentWeather").innerHTML =
         `<div>
-    <h1>${data.name} ${date}<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png"/></h1>
-    <p>Temp:${data.main.temp + "°F"}</p>
-    <p>Wind: ${data.wind.speed + "MPH"}</p>
+    <h1>${data.name} -- ${date}<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png"/></h1>
+    <p>Temp: ${data.main.temp + "°F"}</p>
+    <p>Wind: ${data.wind.speed + " mph"}</p>
     <p>Humidity: ${data.main.humidity +"%"}</p>
 </div>`
 };
@@ -71,14 +71,15 @@ function renderForecast(forecastData) {
         let wind = city.wind.speed;
         let temp = city.main.temp;
         let icon = city.weather[0].icon;
-        let date = moment(city.dt);
+        let date = moment(city.dt_txt).format("LL");
 
         document.querySelector('ul').innerHTML +=
             `<li class = "day", 
             <h2>${date}</h2>
-            <p>${temp}</p>
-            <p>${wind}<p>
-            <p>${humidity}</p>
+            <img src="http://openweathermap.org/img/wn/${icon}.png"/>
+            <p>Temp: ${temp + "°F"}</p>
+            <p>Wind: ${wind + "mph"}<p>
+            <p>Humidity: ${humidity + "%"}</p>
         </li>`
 
     }
