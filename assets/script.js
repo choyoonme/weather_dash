@@ -64,6 +64,7 @@ async function getTheWeather() {
 
 function renderForecast(forecastData) {
     console.log(forecastData);
+    document.querySelector("ul").innerHTML = "";
     //list.[0].weather etc. render in a loop and append 
     for (let i = 0; i < forecastData.list.length; i = i + 8) {
         let city = forecastData.list[i];
@@ -81,6 +82,8 @@ function renderForecast(forecastData) {
             <p>Wind: ${wind + "mph"}<p>
             <p>Humidity: ${humidity + "%"}</p>
         </li>`
+
+
 
     }
 
