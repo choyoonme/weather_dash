@@ -22,6 +22,19 @@ header {
 #city {
     display: block;
     margin: 5px;
+    width: 150px;
+}
+
+.searchButton {
+    width: 150px;
+    height: auto;
+    margin: 5px;
+}
+
+.historyBtn {
+    width: 150px;
+    height: auto;
+    margin: 5px;
 }
 
 .wrapper {

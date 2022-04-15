@@ -104,13 +104,23 @@ function renderSearchHistory() {
     const cityHistory = getSearchHistory();
     for (let i = 0; i < cityHistory.length; i++) {
         const city = cityHistory[i];
-        console.log(city);
         document.querySelector(".searchHistory").innerHTML +=
             `<div>
-            <button>${city}</button>
+            <button class="historyBtn">${city}</button>
             </div>`
     }
 };
 renderSearchHistory();
 
-searchButton.addEventListener("click", getTheWeather);
+async function getSavedCity(event) {
+    const cityName = event.target.innerText;
+    const cityData = await getCityData(cityName);
+    renderCurrent(cityData);
+    const lat = cityData.coord.lat;
+    const lon = cityData.coord.lon;
+    const forecastData = await getForecast(lat, lon);
+    renderForecast(forecastData);
+
+};
+
+document.querySelector(".searchHistory").addEventListener("click", getSavedCity);
