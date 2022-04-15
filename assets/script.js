@@ -1,28 +1,17 @@
-const testData = { "coord": { "lon": -75.1638, "lat": 39.9523 }, "weather": [{ "id": 803, "main": "Clouds", "description": "broken clouds", "icon": "04n" }], "base": "stations", "main": { "temp": 281.12, "feels_like": 278.6, "temp_min": 279.33, "temp_max": 282.29, "pressure": 1015, "humidity": 49 }, "visibility": 10000, "wind": { "speed": 4.12, "deg": 300 }, "clouds": { "all": 75 }, "dt": 1649641346, "sys": { "type": 2, "id": 2037403, "country": "US", "sunrise": 1649586615, "sunset": 1649633592 }, "timezone": -14400, "id": 4560349, "name": "Philadelphia", "cod": 200 };
+//global variables
 let date = moment().format("MMMM Do YYYY");
-
-// GIVEN a weather dashboard with form inputs
-// WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
-// WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-// WHEN I view the UV index
-// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-// WHEN I view future weather conditions for that city
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
-// WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city
-
 const searchButton = document.querySelector(".searchButton");
+const searchField = document.querySelector("#city");
+//event listeners
+searchField.addEventListener("keypress", getTheWeather);
 searchButton.addEventListener("click", getTheWeather);
-document.querySelector(".searchHistory").innerHTML
-
+//get user input
 function getUserInput() {
     const inputField = document.querySelector("#city");
     const cityName = inputField.value;
     return cityName;
-}
-
+};
+//fetch city weather API data
 function getCityData(city) {
     const queryUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=imperial`;
     //performs an API call to request and return JSON data about a city
@@ -33,7 +22,7 @@ function getCityData(city) {
             return response.json();
         });
 };
-
+//fetch city specific weather
 async function getForecast(lat, lon) {
     const queryUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=imperial`;
     const response = await fetch(queryUrl);
@@ -41,7 +30,7 @@ async function getForecast(lat, lon) {
     jsonData = data;
     return data;
 };
-
+//display current forecast
 function renderCurrent(data) {
     document.querySelector(".currentWeather").innerHTML =
         `<div>
@@ -51,17 +40,22 @@ function renderCurrent(data) {
     <p>Humidity: ${data.main.humidity +"%"}</p>
 </div>`
 };
+//main function rendering current and future forecasts
+async function getTheWeather(event) {
+    if (event.keyCode === 13 || event.type === "click") {
+        const cityName = getUserInput();
+        const cityData = await getCityData(cityName);
+        renderCurrent(cityData);
+        const lat = cityData.coord.lat;
+        const lon = cityData.coord.lon;
+        const forecastData = await getForecast(lat, lon);
+        renderForecast(forecastData);
+        saveCity(cityName);
+        renderSearchHistory();
 
-async function getTheWeather() {
-    const cityName = getUserInput();
-    const cityData = await getCityData(cityName);
-    renderCurrent(cityData);
-    const lat = cityData.coord.lat;
-    const lon = cityData.coord.lon;
-    const forecastData = await getForecast(lat, lon);
-    renderForecast(forecastData);
+    }
 };
-
+//display 5-day forecast
 function renderForecast(forecastData) {
     console.log(forecastData);
     document.querySelector("ul").innerHTML = "";
@@ -82,10 +76,41 @@ function renderForecast(forecastData) {
             <p>Wind: ${wind + "mph"}<p>
             <p>Humidity: ${humidity + "%"}</p>
         </li>`
-
-
-
     }
-
-
 };
+
+//local storage and clickable history
+//save searched cities in local storage
+function saveCity(cityName) {
+    const searchHistory = getSearchHistory();
+    //use inequality operator in conditional to prevent cities from appearing more than once
+    if (!searchHistory.includes(cityName)) {
+        searchHistory.push(cityName);
+        localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+    }
+};
+//get stored searches from local storage
+function getSearchHistory() {
+    const searchHistory = localStorage.getItem("searchHistory");
+    if (searchHistory) {
+        return JSON.parse(searchHistory);
+    } else {
+        return [];
+    }
+};
+//render search history as clickable buttons on page
+function renderSearchHistory() {
+    document.querySelector(".searchHistory").innerHTML = "";
+    const cityHistory = getSearchHistory();
+    for (let i = 0; i < cityHistory.length; i++) {
+        const city = cityHistory[i];
+        console.log(city);
+        document.querySelector(".searchHistory").innerHTML +=
+            `<div>
+            <button>${city}</button>
+            </div>`
+    }
+};
+renderSearchHistory();
+
+searchButton.addEventListener("click", getTheWeather);
