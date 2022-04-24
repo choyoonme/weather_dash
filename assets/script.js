@@ -2,6 +2,7 @@
 let date = moment().format("MMMM Do YYYY");
 const searchButton = document.querySelector(".searchButton");
 const searchField = document.querySelector("#city");
+const APIKey = "d41c6401532e56c103b33e23b2f309a6";
 //event listeners
 searchField.addEventListener("keypress", getTheWeather);
 searchButton.addEventListener("click", getTheWeather);
@@ -13,7 +14,7 @@ function getUserInput() {
 };
 //fetch city weather API data
 function getCityData(city) {
-    const queryUrl = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=imperial`;
+    const queryUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${APIKey}&units=imperial`;
     //performs an API call to request and return JSON data about a city
     //calling async request returns a promise
     return fetch(queryUrl)
@@ -24,7 +25,7 @@ function getCityData(city) {
 };
 //fetch city specific weather
 async function getForecast(lat, lon) {
-    const queryUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=imperial`;
+    const queryUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}&units=imperial`;
     const response = await fetch(queryUrl);
     const data = await response.json();
     jsonData = data;
@@ -34,7 +35,7 @@ async function getForecast(lat, lon) {
 function renderCurrent(data) {
     document.querySelector(".currentWeather").innerHTML =
         `<div>
-    <h1>${data.name} -- ${date}<img src="http://openweathermap.org/img/wn/${data.weather[0].icon}.png"/></h1>
+    <h1>${data.name} -- ${date}<img src="https://openweathermap.org/img/wn/${data.weather[0].icon}.png"/></h1>
     <p>Temp: ${data.main.temp + "°F"}</p>
     <p>Wind: ${data.wind.speed + " mph"}</p>
     <p>Humidity: ${data.main.humidity +"%"}</p>
