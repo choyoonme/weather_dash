@@ -2,7 +2,7 @@
 # Weather Dashboard
 
 ## User Story
-Using openweathermap API and moment.js, this weath dashboard allows user to search and retrieve current weather and a 5-day forecast specific to any city searched in the text input.  Each city is saved and accessible through the use of local storage and click event listeners.
+Using openweathermap API and moment.js, this weather dashboard allows user to search and retrieve current weather and a 5-day forecast specific to any city searched in the text input.  Each city is saved and accessible through the use of local storage and click event listeners.
 
 
 ## Acceptance Criteria
